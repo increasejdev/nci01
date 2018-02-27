@@ -1,0 +1,7 @@
+body {
+background: #D8C6A4 url("../images/gw2_airship.png");	
+background-repeat: no-repeat;
+background-position: center center;
+background-attachment: fixed;
+background-size: cover;
+}
