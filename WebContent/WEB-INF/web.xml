@@ -2,10 +2,15 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>AllinOne</display-name>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>/login</welcome-file>
   </welcome-file-list>
-  
   <error-page>
-        <location>/error.html</location>
-    </error-page>
+    <location>/error.html</location>
+  </error-page>
+  <resource-ref>
+    <description>DB Connection</description>
+    <res-ref-name>jdbc/heroku_b7a8cd9e24ff77b</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 </web-app>

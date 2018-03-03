@@ -2,22 +2,30 @@ package org.os.login;
 
 public class User {
 	
-	private String user;
+	private String name;
 	private String password;
 	
-	
-	public String getUserName() {
-		return user;
+	public User() {
+		
 	}
-	public void setUserName(String userId) {
-		this.user = userId;
+	
+	public User (String name, String password) {
+		this.name = name;
+		this.password = password;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String userId) {
+		this.name = userId;
 	}
 	public String getPassword() {
 		return password;
 	}
 	@Override
 	public String toString() {
-		return "User [user=" + user + "]";
+		return "User [user=" + name + "]";
 	}
 	
 }

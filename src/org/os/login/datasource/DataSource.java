@@ -9,28 +9,43 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataSource {
-	Connection conn = null;	
-	private static final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net?useUnicode=true&characterEncoding=utf-8";
-	private static final String DB_LOGIN = "b3f241c16c9fcf";
-	private static final String DB_PASSWORD = "8311fc8b";
+
+public class DataSource {	
+	
+	private static DataSource instance; 
+	private Statement statement;     	
+	public Connection conn;	
 	private static final String DATABASE_NAME = "heroku_b7a8cd9e24ff77b";
 	
-	private Connection connect(){
+	private DataSource() {
+		String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net?useUnicode=true&characterEncoding=utf-8";
+		String DB_LOGIN = "b3f241c16c9fcf";
+		String DB_PASSWORD = "8311fc8b";		
+		String driver = "com.mysql.cj.jdbc.Driver";
+		
 		try {
-			conn = DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
-		} catch (SQLException e) {				
+			Class.forName(driver).newInstance();
+			this.conn = (Connection)DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
+			System.out.println("connection established");
+		} catch (Exception e) {			
 			e.printStackTrace();
 		}
-		System.out.println("connection established");
-		return conn;
 	}
 	
-	public Map<String, String> selectAll() {
+	public static synchronized DataSource getInstance() {
+		if (instance == null) {
+			instance = new DataSource();
+		}
+		
+		return instance;
+	}
+	
+       	
+	public  Map<String, String> selectAll() {
 		String sql = "SELECT user, password FROM " + DATABASE_NAME + ".Users";
 		Map<String, String> users = new HashMap<>();
 		
-		try (Connection conn = this.connect();
+		try (
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
@@ -45,24 +60,56 @@ public class DataSource {
 		
 	}
 	
-	public void showTables() {		
-		try {
-			    Connection conn = this.connect();		
+	private  String firstLetter(String str) {		
+		String result = str.substring(0, 1).toUpperCase() + str.substring(1);		
+		return result;
+	}
+	
+	public HashMap<String, String> showTables() {	
+		HashMap<String, String> objS = new HashMap<>();
+		
+		String icons[] = {"fa fa-database","fa fa-drivers-license-o","fa fa-edit","fa fa-film","fa fa-send-o","fa fa-sliders","fa fa-address-book-o"};
+		int i = 0;
+		
+		try {	    			    
 				DatabaseMetaData md = conn.getMetaData();
-				ResultSet rs = md.getTables(DATABASE_NAME, null, "%", null);
-				while (rs.next()) {
-					System.out.println(rs.getString(3));				
+				ResultSet rs = md.getTables(DATABASE_NAME, null, "%", null);				
+				while(rs.next()) {	
+					objS.put(firstLetter(rs.getString(3)), icons[i]);					
+					i++;
 				}
 		} catch(Exception ex) {ex.getMessage();}		
+				
+		return objS;
+	}
+	
+	
+	public HashMap<String, String> UniversalQuery(String tableName) {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + tableName;	
+		 HashMap<String, String> hmap = new HashMap<>();
+		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 
+			
+			while (rs.next()) {
+				int numColums = rs.getMetaData().getColumnCount();				
+				for (int i = 2; i <= numColums; i++) {
+					hmap.put(rs.getMetaData().getColumnName(i), rs.getString(i));
+					//System.out.println("Column " + i + " = " + rs.getObject(i));
+				}
+			}
 						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}
 		
-	}
-		
-	
-	
-	public static void main(String[] args) {
-		new DataSource().showTables();
+		return hmap;
 	}
 	
+	
+//	public static void main(String[] args) {
+//		new DataSource().UniversalQuery("Users");
+//	}
 
 }

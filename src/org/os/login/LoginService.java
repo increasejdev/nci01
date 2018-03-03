@@ -14,12 +14,13 @@ public class LoginService {
 		for(Map.Entry<String, String> entry : Auth.entrySet()) {
 			if (userId.equals(entry.getKey()) && password.equals(entry.getValue())) {
 				result = true;
-				SuccessUser.setUserName(entry.getKey());
+				SuccessUser.setName(entry.getKey());
 			} else {
 				result = false;
 			}
 		}
 		return result;
+		// mysql://b8xwsr0isw3a1zkm:sux3rx4pjxt4hij1@vlvlnl1grfzh34vj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/w4gaxmhawf08wsxa
 	}
 
 	public User getUserDetails(String userId) {	
