@@ -49,10 +49,10 @@ public class Login extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<String> arr = new DataSource().showTables();	
-		request.setAttribute("table1", arr);
-		request.getRequestDispatcher("admin.jsp").forward(request, response);
-		
+		//ArrayList<String> arr = DataSource.getInstance().showTables();	
+//		request.setAttribute("table1", arr);
+//		request.getRequestDispatcher("admin.jsp").forward(request, response);
+//		
 	}
 
 }
