@@ -38,7 +38,7 @@ public class TestParam extends HttpServlet {
 		HashMap<String, String> rt = DataSource.getInstance().showTables();	
 		
 		
-		request.getServletContext().setAttribute("table", rt);
+		request.getSession().setAttribute("table", rt);
 		request.setAttribute("tableParam", pTable);
 		request.getRequestDispatcher("admin.jsp").forward(request, response);
 	}

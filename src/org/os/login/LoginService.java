@@ -7,7 +7,7 @@ public class LoginService {
 	User SuccessUser = new User();
 		
 	public boolean authenticate(String userId, String password) {
-		 Map<String, String> Auth = new DataSource().selectAll();
+		 Map<String, String> Auth = DataSource.getInstance().selectAll();
 		 
 		boolean result = false;
 		

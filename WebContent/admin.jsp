@@ -33,7 +33,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">		
-       <c:forEach var="step" items="${applicationScope.table}">
+       <c:forEach var="step" items="${sessionScope.table}">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         
           <a class="nav-link" href="${pageContext.request.contextPath}/TestParam?name=${step.key}">
