@@ -42,14 +42,14 @@ public class DataSource {
 	
        	
 	public  Map<String, String> selectAll() {
-		String sql = "SELECT user, password FROM " + DATABASE_NAME + ".Users";
+		String sql = "SELECT email, password FROM " + DATABASE_NAME + ".Users";
 		Map<String, String> users = new HashMap<>();
 		
 		try (
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				users.put(rs.getString("user"), rs.getString("password"));				
+				users.put(rs.getString("email"), rs.getString("password"));				
 			}
 						
 		} catch (SQLException ex) {
@@ -94,7 +94,7 @@ public class DataSource {
 			
 			while (rs.next()) {
 				int numColums = rs.getMetaData().getColumnCount();				
-				for (int i = 2; i <= numColums; i++) {
+				for (int i = 1; i < numColums; i++) {
 					hmap.put(rs.getMetaData().getColumnName(i), rs.getString(i));
 					//System.out.println("Column " + i + " = " + rs.getObject(i));
 				}
@@ -108,8 +108,14 @@ public class DataSource {
 	}
 	
 	
-//	public static void main(String[] args) {
-//		new DataSource().UniversalQuery("Users");
-//	}
+	public static void main(String[] args) {
+		HashMap<String, String> olya8 = new DataSource().UniversalQuery("Status");
+		
+		for(Map.Entry<String, String> entry : olya8.entrySet()) {
+		   System.out.println(entry.getKey() + " " + entry.getValue());
+		     
+		
+	}
 
+	}
 }

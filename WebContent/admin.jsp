@@ -267,20 +267,22 @@
                 </tr>
               </tfoot>
               <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
+              <c:forEach var="column" items="${tableParam}">
                   <c:if test='${column.key == "Status"}'>
+                <tr>
+                
                 	 <c:forEach var="title" items="${column.value}">
                         <td>${title.value}</td>
                      </c:forEach> 
-                      </c:if>  
-                       </c:forEach>                  
+                                       
 					<td>
 					<button type="button" class="btn btn-success">Add</button>
 					<button type="button" class="btn btn-warning">Edit</button>
 					<button type="button" class="btn btn-danger">Delete</button>
 					</td>               
                 </tr>
+                </c:if>  
+                       </c:forEach> 
                </c:when>						
                
                <c:when test = "${param.name == 'Priority'}">              	
@@ -428,11 +430,11 @@
               <tfoot>
                 <tr>
                   <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Users"}'>
+                	 <c:if test='${column.key == "Users"}'>
                 	 <c:forEach var="title" items="${column.value}">
                         <th>${title.key}</th>
                      </c:forEach>
-                  </c:if>  
+                 </c:if> 
                 </c:forEach>
                 <th>Actions</th>                   
                 </tr>
@@ -444,7 +446,7 @@
                 	 <c:forEach var="title" items="${column.value}">
                         <td>${title.value}</td>
                      </c:forEach> 
-                      </c:if>  
+                       </c:if>
                        </c:forEach>                  
 					<td>
 					<button type="button" class="btn btn-success">Add</button>
