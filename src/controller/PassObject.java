@@ -21,7 +21,7 @@ public class PassObject extends HttpServlet {
      */
     public PassObject() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**

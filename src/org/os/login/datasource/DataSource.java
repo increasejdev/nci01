@@ -83,7 +83,7 @@ public class DataSource {
 		return objS;
 	}
 	
-	
+	// TODO Change to ArrayList return param and change output in admin.jsp, fixed col names
 	public HashMap<String, String> UniversalQuery(String tableName) {
 		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + tableName;	
 		 HashMap<String, String> hmap = new HashMap<>();
