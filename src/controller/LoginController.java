@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -26,7 +27,8 @@ public class LoginController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");		
+		String action = request.getParameter("action");	
+			
 		
 		if(action == null) {
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
@@ -38,36 +40,37 @@ public class LoginController extends HttpServlet {
 			
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+				
 		
 		else request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		String action = request.getParameter("action");	
-		HashMap<String, HashMap<String,String>> pTable = new HashMap<>();
+		String action = request.getParameter("action");			
 		HashMap<String, String> rt = null;
 		
 		if(action.equals("dologin")) {
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
-			request.setAttribute("email", email);
+			request.getSession().setAttribute("email", email);
 			
 			Accounts account = new Accounts(email, password);
 			if(account.validate()) {				
 				
-				pTable.put("Issue", DataSource.getInstance().UniversalQuery("Issue"));
-				pTable.put("Codifier", DataSource.getInstance().UniversalQuery("Codifier"));
-				pTable.put("Status", DataSource.getInstance().UniversalQuery("Status"));
-				pTable.put("Priority", DataSource.getInstance().UniversalQuery("Priority"));
-				pTable.put("Solution", DataSource.getInstance().UniversalQuery("Solution"));
-				pTable.put("Rfc", DataSource.getInstance().UniversalQuery("Rfc"));
-				pTable.put("Users", DataSource.getInstance().UniversalQuery("Users"));
+//				pTable.put("Issue", DataSource.getInstance().UniversalQuery("Issue"));
+//				pTable.put("Codifier", DataSource.getInstance().UniversalQuery("Codifier"));
+//				pTable.put("Status", DataSource.getInstance().UniversalQuery("Status"));
+//				pTable.put("Priority", DataSource.getInstance().UniversalQuery("Priority"));
+//				pTable.put("Solution", DataSource.getInstance().UniversalQuery("Solution"));
+//				pTable.put("Rfc", DataSource.getInstance().UniversalQuery("Rfc"));
+				
 				
 				rt = DataSource.getInstance().showTables();
 				
-				request.getServletContext().setAttribute("table", rt);
-				request.setAttribute("tableParam", pTable);
+				request.getSession().setAttribute("table", rt);
+				request.getSession().setAttribute("Accounts", DataSource.getInstance().UsersQuery());
+				request.getSession().setAttribute("Rfc", DataSource.getInstance().RfcQuery());
 				request.getRequestDispatcher("admin.jsp").forward(request, response);				
 			}
 			else {

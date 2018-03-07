@@ -2,6 +2,7 @@ package beans;
 
 public class Accounts {
 	
+	private int id;
 	private String email;
 	private String password;
 	
@@ -22,6 +23,22 @@ public class Accounts {
 			this.password = password;
 	}
 	
+	public Accounts(int id, String email, String password) {
+		this.email = email;
+		this.password = password;
+		this.id = id;
+}
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -54,4 +71,10 @@ public class Accounts {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Accounts [id=" + id + ", email=" + email + ", password=" + password + "]";
+	}
+
+	
 }

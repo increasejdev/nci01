@@ -33,10 +33,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">		
-       <c:forEach var="step" items="${applicationScope.table}">
+       <c:forEach var="step" items="${sessionScope.table}">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         
-          <a class="nav-link" href="${pageContext.request.contextPath}/TestParam?name=${step.key}">
+          <a class="nav-link" href="${pageContext.request.contextPath}/Tables?name=${step.key}">
             <i class="${step.value}"></i>
             <span class="nav-link-text">${step.key}</span>
           </a>
@@ -136,7 +136,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>${email}</a>
+            <i class="fa fa-fw fa-sign-out"></i>${sessionScope.email}</a>
         </li>
       </ul>
     </div>
@@ -154,307 +154,65 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             
             
-            <c:choose>
-            <c:when test = "${param.name == 'Issue'}">              	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Issue"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
+            <c:choose> 
+            
+               <c:when test = "${param.name == 'Users'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>email</th>
+              		<th>password</th>
+              		</tr>
               </thead>
               <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Issue"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>email</th>
+              		<th>password</th>
+              		</tr>              		
               </tfoot>
-              <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Issue"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                      </c:if>  
-                       </c:forEach>                  
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-               </c:when>								 
-               
-               
-               <c:when test = "${param.name == 'Codifier'}">              	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Codifier"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Codifier"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Codifier"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                      </c:if>  
-                       </c:forEach>                  
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-               </c:when>									
-                
-               
-               <c:when test = "${param.name == 'Status'}">            	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Status"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Status"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
-              </tfoot>
-              <tbody>
-              <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Status"}'>
-                <tr>
-                
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                                       
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-                </c:if>  
-                       </c:forEach> 
-               </c:when>						
-               
-               <c:when test = "${param.name == 'Priority'}">              	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Priority"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Priority"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Priority"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                      </c:if>  
-                       </c:forEach>                  
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-               </c:when>					
               
-              
-               <c:when test = "${param.name == 'Solution'}">              	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Solution"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Solution"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
-              </tfoot>
               <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Solution"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                      </c:if>  
-                       </c:forEach>                  
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-               </c:when>
-              
+              <c:forEach var="column" items="${Accounts}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.email}</td>
+              		 <td>${column.password}</td>              	
+              	</tr>
+              	</c:forEach>
+              	</tbody>
+              	
+              	
+               </c:when>	
                
-               <c:when test = "${param.name == 'Rfc'}">              	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Rfc"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
+               <c:when test = "${param.name == 'Rfc'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>rfc</th>
+              		<th>issue_id</th>
+              		</tr>
               </thead>
               <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Rfc"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>rfc</th>
+              		<th>issue_id</th>
+              		</tr>              		
               </tfoot>
+              
               <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Rfc"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                      </c:if>  
-                       </c:forEach>                  
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-               </c:when>
-               							
-                              
-               <c:when test = "${param.name == 'Users'}">             	
-              <thead>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Users"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                  </c:if>  
-                </c:forEach>                
-                  <th>Actions</th>                
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <c:forEach var="column" items="${tableParam}">
-                	 <c:if test='${column.key == "Users"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <th>${title.key}</th>
-                     </c:forEach>
-                 </c:if> 
-                </c:forEach>
-                <th>Actions</th>                   
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr>
-                <c:forEach var="column" items="${tableParam}">
-                  <c:if test='${column.key == "Users"}'>
-                	 <c:forEach var="title" items="${column.value}">
-                        <td>${title.value}</td>
-                     </c:forEach> 
-                       </c:if>
-                       </c:forEach>                  
-					<td>
-					<button type="button" class="btn btn-success">Add</button>
-					<button type="button" class="btn btn-warning">Edit</button>
-					<button type="button" class="btn btn-danger">Delete</button>
-					</td>               
-                </tr>
-               </c:when>	               
+              <c:forEach var="column" items="${Rfc}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.rfc}</td>
+              		 <td>${column.issue_id}</td>              	
+              	</tr>
+              	</c:forEach>
+              	</tbody>
+              	
+              	
+               </c:when>               
                
                	<c:otherwise>
                		<b>ID is equals to 2</b>

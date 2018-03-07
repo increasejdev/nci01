@@ -10,6 +10,7 @@ public class LoginService {
 		 Map<String, String> Auth = DataSource.getInstance().selectAll();
 		 
 		boolean result = false;
+		// TODO ѕрикрутить проверку по базе дл€ логинов
 		
 		for(Map.Entry<String, String> entry : Auth.entrySet()) {
 			if (userId.equals(entry.getKey()) && password.equals(entry.getValue())) {

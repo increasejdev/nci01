@@ -6,8 +6,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import beans.Accounts;
+import beans.Rfc;
 
 
 public class DataSource {	
@@ -83,39 +87,47 @@ public class DataSource {
 		return objS;
 	}
 	
-	// TODO Change to ArrayList return param and change output in admin.jsp, fixed col names
-	public HashMap<String, String> UniversalQuery(String tableName) {
-		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + tableName;	
-		 HashMap<String, String> hmap = new HashMap<>();
-		
+
+	public ArrayList<Accounts> UsersQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "users";	
+		 ArrayList<Accounts> users = new ArrayList<>();		
 		try {
 				statement = conn.createStatement();
-				ResultSet rs = statement.executeQuery(sql); 
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				users.add(new Accounts(Integer.parseInt(rs.getString(1)),rs.getString(2), rs.getString(3)));	
 			
-			while (rs.next()) {
-				int numColums = rs.getMetaData().getColumnCount();				
-				for (int i = 1; i < numColums; i++) {
-					hmap.put(rs.getMetaData().getColumnName(i), rs.getString(i));
-					//System.out.println("Column " + i + " = " + rs.getObject(i));
-				}
-			}
 						
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
+		}		
+		return users;
 		}
-		
-		return hmap;
-	}
+	
+	public ArrayList<Rfc> RfcQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Rfc";	
+		 ArrayList<Rfc> users = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				users.add(new Rfc(Integer.parseInt(rs.getString(1)),rs.getString(2), Integer.parseInt(rs.getString(3))));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return users;
+		}
 	
 	
 	public static void main(String[] args) {
-		HashMap<String, String> olya8 = new DataSource().UniversalQuery("Status");
+		ArrayList<Rfc> olya8 = new DataSource().RfcQuery();
 		
-		for(Map.Entry<String, String> entry : olya8.entrySet()) {
-		   System.out.println(entry.getKey() + " " + entry.getValue());
+		System.out.println(olya8);
 		     
 		
 	}
 
 	}
-}
+
