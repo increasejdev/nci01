@@ -31,7 +31,9 @@ public class LoginController extends HttpServlet {
 			
 		
 		if(action == null) {
+			if(request.getSession() != null) request.getSession().invalidate();
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			
 		}
 		else if(action.equals("login")) {
 			request.setAttribute("email", "");
@@ -57,20 +59,19 @@ public class LoginController extends HttpServlet {
 			
 			Accounts account = new Accounts(email, password);
 			if(account.validate()) {				
-				
-//				pTable.put("Issue", DataSource.getInstance().UniversalQuery("Issue"));
-//				pTable.put("Codifier", DataSource.getInstance().UniversalQuery("Codifier"));
-//				pTable.put("Status", DataSource.getInstance().UniversalQuery("Status"));
-//				pTable.put("Priority", DataSource.getInstance().UniversalQuery("Priority"));
-//				pTable.put("Solution", DataSource.getInstance().UniversalQuery("Solution"));
-//				pTable.put("Rfc", DataSource.getInstance().UniversalQuery("Rfc"));
-				
-				
+								
 				rt = DataSource.getInstance().showTables();
 				
 				request.getSession().setAttribute("table", rt);
+				
 				request.getSession().setAttribute("Accounts", DataSource.getInstance().UsersQuery());
 				request.getSession().setAttribute("Rfc", DataSource.getInstance().RfcQuery());
+				request.getSession().setAttribute("Codifier", DataSource.getInstance().CodifierQuery());
+				request.getSession().setAttribute("Status", DataSource.getInstance().StatusQuery());
+				request.getSession().setAttribute("Priority", DataSource.getInstance().PriorityQuery());
+				request.getSession().setAttribute("Solution", DataSource.getInstance().SolutionQuery());
+				request.getSession().setAttribute("Issue", DataSource.getInstance().IssueQuery());
+				
 				request.getRequestDispatcher("admin.jsp").forward(request, response);				
 			}
 			else {

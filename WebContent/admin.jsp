@@ -209,14 +209,165 @@
               		 <td>${column.issue_id}</td>              	
               	</tr>
               	</c:forEach>
-              	</tbody>
-              	
-              	
-               </c:when>               
+              	</tbody>              	
+               </c:when>    
+                              
+               <c:when test = "${param.name == 'Codifier'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>codifier</th>
+              		<th>issue_id</th>
+              		</tr>
+              </thead>
+              <tfoot>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>codifier</th>
+              		<th>issue_id</th>
+              		</tr>              		
+              </tfoot>
+              
+              <tbody>
+              <c:forEach var="column" items="${Codifier}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.codifier}</td>
+              		 <td>${column.issue_id}</td>              	
+              	</tr>
+              	</c:forEach>
+              	</tbody>              	
+               </c:when>             
                
-               	<c:otherwise>
-               		<b>ID is equals to 2</b>
-               	</c:otherwise>
+               <c:when test = "${param.name == 'Priority'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>priority</th>
+              		<th>issue_id</th>
+              		</tr>
+              </thead>
+              <tfoot>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>priority</th>
+              		<th>issue_id</th>
+              		</tr>              		
+              </tfoot>
+              
+              <tbody>
+              <c:forEach var="column" items="${Priority}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.priority}</td>
+              		 <td>${column.issue_id}</td>              	
+              	</tr>
+              	</c:forEach>
+              	</tbody>              	
+               </c:when>  
+               
+            <c:when test = "${param.name == 'Status'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>status</th>
+              		<th>issue_id</th>
+              		</tr>
+              </thead>
+              <tfoot>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>status</th>
+              		<th>issue_id</th>
+              		</tr>              		
+              </tfoot>
+              
+              <tbody>
+              <c:forEach var="column" items="${Status}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.status}</td>
+              		 <td>${column.issue_id}</td>              	
+              	</tr>
+              	</c:forEach>
+              	</tbody>              	
+               </c:when>  
+               
+            <c:when test = "${param.name == 'Solution'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>solution</th>
+              		<th>issue_id</th>
+              		</tr>
+              </thead>
+              <tfoot>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>solution</th>
+              		<th>issue_id</th>
+              		</tr>              		
+              </tfoot>
+              
+              <tbody>
+              <c:forEach var="column" items="${Solution}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.solution}</td>
+              		 <td>${column.issue_id}</td>              	
+              	</tr>
+              	</c:forEach>
+              	</tbody>              	
+               </c:when> 
+               
+          <c:when test = "${param.name == 'Issue'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>issue</th>
+              		<th>status_id</th>
+              		<th>codifier_id</th>
+              		<th>description</th>
+              		<th>priority_id</th>
+              		<th>solution_id</th>
+              		<th>data</th>
+              		<th>rfc_id</th>              		
+              		</tr>
+              </thead>
+              <tfoot>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>issue</th>
+              		<th>status_id</th>
+              		<th>codifier_id</th>
+              		<th>description</th>
+              		<th>priority_id</th>
+              		<th>solution_id</th>
+              		<th>data</th>
+              		<th>rfc_id</th>
+              		</tr>              		
+              </tfoot>
+              
+              <tbody>
+              <c:forEach var="column" items="${Issue}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.issue}</td>
+              		 <td>${column.status_id}</td>
+              		 <td>${column.codifier_id}</td>
+              		 <td>${column.description}</td>
+              		 <td>${column.priority_id}</td>
+              		 <td>${column.solution_id}</td>
+              		 <td>${column.data}</td>
+              		 <td>${column.rfc_id}</td>               		 
+              	</tr>
+              	</c:forEach>
+              	</tbody>              	
+               </c:when>
+               
+              	<c:otherwise>
+              		<b>ID is equals to 2</b>
+              	</c:otherwise>
                
                
               </c:choose>
@@ -253,14 +404,14 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="/AllinOne/Controller" />Logout</a>
+            <a class="btn btn-primary" href="/AllinOne/Controller">Logout</a>
           </div>
         </div>
       </div>
     </div>
     <!-- SCRIPTS-->
     <c:import url="adminparts/scripts.jsp"></c:import>
-  </div>
+  
 </body>
 
 </html>

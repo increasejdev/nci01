@@ -11,7 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import beans.Accounts;
+import beans.Codifier;
+import beans.Issue;
+import beans.Priority;
 import beans.Rfc;
+import beans.Solution;
+import beans.Status;
 
 
 public class DataSource {	
@@ -106,23 +111,111 @@ public class DataSource {
 	
 	public ArrayList<Rfc> RfcQuery() {
 		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Rfc";	
-		 ArrayList<Rfc> users = new ArrayList<>();		
+		 ArrayList<Rfc> rfc = new ArrayList<>();		
 		try {
 				statement = conn.createStatement();
 				ResultSet rs = statement.executeQuery(sql); 			
 			while (rs.next()) 						
-				users.add(new Rfc(Integer.parseInt(rs.getString(1)),rs.getString(2), Integer.parseInt(rs.getString(3))));	
+				rfc.add(new Rfc(Integer.parseInt(rs.getString(1)),rs.getString(2), Integer.parseInt(rs.getString(3))));	
 			
 						
 		} catch (SQLException ex) {
 			System.err.println(ex.getMessage());
 		}		
-		return users;
+		return rfc;
+		}
+	
+	public ArrayList<Codifier> CodifierQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Codifier";	
+		 ArrayList<Codifier> codifier = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				codifier.add(new Codifier(rs.getInt(1),rs.getString(2), rs.getInt(3)));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return codifier;
+		}
+	
+	public ArrayList<Status> StatusQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Status";	
+		 ArrayList<Status> status = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				status.add(new Status(rs.getInt(1),rs.getString(2), rs.getInt(3)));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return status;
+		}
+	
+	public ArrayList<Priority> PriorityQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Priority";	
+		 ArrayList<Priority> priority = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				priority.add(new Priority(rs.getInt(1),rs.getString(2), rs.getInt(3)));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return priority;
+		}
+
+	public ArrayList<Solution> SolutionQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Solution";	
+		 ArrayList<Solution> solution = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				solution.add(new Solution(rs.getInt(1),rs.getString(2), rs.getInt(3)));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return solution;
+		}
+	
+	public ArrayList<Issue> IssueQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Issue";	
+		 ArrayList<Issue> issue = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				issue.add(new Issue(rs.getInt(1),
+						rs.getString(2), 
+						rs.getInt(3), 
+						rs.getInt(4), 
+						rs.getString(5), 
+						rs.getInt(6), 
+						rs.getInt(7), 
+						rs.getDate(8), 
+						rs.getString(9)));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return issue;
 		}
 	
 	
 	public static void main(String[] args) {
-		ArrayList<Rfc> olya8 = new DataSource().RfcQuery();
+		ArrayList<Issue> olya8 = new DataSource().IssueQuery();
 		
 		System.out.println(olya8);
 		     
