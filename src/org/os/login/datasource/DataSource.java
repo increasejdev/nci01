@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import beans.Accounts;
+import beans.Book;
 import beans.Codifier;
 import beans.Issue;
 import beans.Priority;
@@ -24,7 +25,7 @@ public class DataSource {
 	private static DataSource instance; 
 	private Statement statement;     	
 	public Connection conn;	
-	private static final String DATABASE_NAME = "heroku_b7a8cd9e24ff77b";
+	public static final String DATABASE_NAME = "heroku_b7a8cd9e24ff77b";
 	
 	private DataSource() {
 		String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net?useUnicode=true&characterEncoding=utf-8";
@@ -77,7 +78,12 @@ public class DataSource {
 	public HashMap<String, String> showTables() {	
 		HashMap<String, String> objS = new HashMap<>();
 		
-		String icons[] = {"fa fa-database","fa fa-drivers-license-o","fa fa-edit","fa fa-film","fa fa-send-o","fa fa-sliders","fa fa-address-book-o"};
+		String icons[] = {"fa fa-database",
+				"fa fa-drivers-license-o",
+				"fa fa-edit","fa fa-film",
+				"fa fa-send-o","fa fa-sliders",
+				"fa fa-address-book-o", 
+				"fa fa-archive"};
 		int i = 0;
 		
 		try {	    			    
@@ -213,14 +219,30 @@ public class DataSource {
 		return issue;
 		}
 	
+	public ArrayList<Book> BooksQuery() {
+		 String sql = "SELECT * FROM " + DATABASE_NAME + "." + "Book";	
+		 ArrayList<Book> book = new ArrayList<>();		
+		try {
+				statement = conn.createStatement();
+				ResultSet rs = statement.executeQuery(sql); 			
+			while (rs.next()) 						
+				book.add(new Book(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4)));	
+			
+						
+		} catch (SQLException ex) {
+			System.err.println(ex.getMessage());
+		}		
+		return book;
+		}
 	
-	public static void main(String[] args) {
-		ArrayList<Issue> olya8 = new DataSource().IssueQuery();
-		
-		System.out.println(olya8);
-		     
-		
-	}
+	
+//	public static void main(String[] args) {
+//		ArrayList<Book> olya8 = new DataSource().BooksQuery();
+//		
+//		System.out.println(olya8);
+//		     
+//		
+//	}
 
 	}
 

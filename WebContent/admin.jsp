@@ -21,6 +21,7 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -36,7 +37,7 @@
        <c:forEach var="step" items="${sessionScope.table}">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
         
-          <a class="nav-link" href="${pageContext.request.contextPath}/Tables?name=${step.key}">
+          <a class="nav-link" href="${pageContext.request.contextPath}/menu?name=${step.key}">
             <i class="${step.value}"></i>
             <span class="nav-link-text">${step.key}</span>
           </a>
@@ -151,9 +152,7 @@
           <i class="fa fa-table"></i> Data Table </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            
-            
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">   
             <c:choose> 
             
                <c:when test = "${param.name == 'Users'}">
@@ -162,6 +161,7 @@
               		<th>ID</th>
               		<th>email</th>
               		<th>password</th>
+              		<th>actions</th>
               		</tr>
               </thead>
               <tfoot>
@@ -169,17 +169,30 @@
               		<th>ID</th>
               		<th>email</th>
               		<th>password</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
+              
+              
               
               <tbody>
               <c:forEach var="column" items="${Accounts}">
                 <tr>                
               		 <td>${column.id}</td>
               		 <td>${column.email}</td>
-              		 <td>${column.password}</td>              	
+              		 <td>${column.password}</td>   
+              	 <td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td>
+              	             	            	
               	</tr>
+              	
               	</c:forEach>
+              	
+              	
               	</tbody>
               	
               	
@@ -191,6 +204,7 @@
               		<th>ID</th>
               		<th>rfc</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>
               </thead>
               <tfoot>
@@ -198,6 +212,7 @@
               		<th>ID</th>
               		<th>rfc</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
               
@@ -206,7 +221,14 @@
                 <tr>                
               		 <td>${column.id}</td>
               		 <td>${column.rfc}</td>
-              		 <td>${column.issue_id}</td>              	
+              		 <td>${column.issue_id}</td> 
+              	<td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td> 
+              	            	
               	</tr>
               	</c:forEach>
               	</tbody>              	
@@ -218,6 +240,7 @@
               		<th>ID</th>
               		<th>codifier</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>
               </thead>
               <tfoot>
@@ -225,6 +248,7 @@
               		<th>ID</th>
               		<th>codifier</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
               
@@ -233,7 +257,14 @@
                 <tr>                
               		 <td>${column.id}</td>
               		 <td>${column.codifier}</td>
-              		 <td>${column.issue_id}</td>              	
+              		 <td>${column.issue_id}</td>
+              	<td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td>    
+              	          	
               	</tr>
               	</c:forEach>
               	</tbody>              	
@@ -245,6 +276,7 @@
               		<th>ID</th>
               		<th>priority</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>
               </thead>
               <tfoot>
@@ -252,6 +284,7 @@
               		<th>ID</th>
               		<th>priority</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
               
@@ -260,7 +293,14 @@
                 <tr>                
               		 <td>${column.id}</td>
               		 <td>${column.priority}</td>
-              		 <td>${column.issue_id}</td>              	
+              		 <td>${column.issue_id}</td> 
+              	<td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td>  
+              	           	
               	</tr>
               	</c:forEach>
               	</tbody>              	
@@ -272,6 +312,7 @@
               		<th>ID</th>
               		<th>status</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>
               </thead>
               <tfoot>
@@ -279,6 +320,7 @@
               		<th>ID</th>
               		<th>status</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
               
@@ -287,7 +329,14 @@
                 <tr>                
               		 <td>${column.id}</td>
               		 <td>${column.status}</td>
-              		 <td>${column.issue_id}</td>              	
+              		 <td>${column.issue_id}</td> 
+              	<td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td>  
+              	           	
               	</tr>
               	</c:forEach>
               	</tbody>              	
@@ -299,6 +348,7 @@
               		<th>ID</th>
               		<th>solution</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>
               </thead>
               <tfoot>
@@ -306,6 +356,7 @@
               		<th>ID</th>
               		<th>solution</th>
               		<th>issue_id</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
               
@@ -314,7 +365,14 @@
                 <tr>                
               		 <td>${column.id}</td>
               		 <td>${column.solution}</td>
-              		 <td>${column.issue_id}</td>              	
+              		 <td>${column.issue_id}</td> 
+              	<td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td>   
+              	          	
               	</tr>
               	</c:forEach>
               	</tbody>              	
@@ -331,7 +389,8 @@
               		<th>priority_id</th>
               		<th>solution_id</th>
               		<th>data</th>
-              		<th>rfc_id</th>              		
+              		<th>rfc_id</th>   
+              		<th>actions</th>           		
               		</tr>
               </thead>
               <tfoot>
@@ -345,6 +404,7 @@
               		<th>solution_id</th>
               		<th>data</th>
               		<th>rfc_id</th>
+              		<th>actions</th>
               		</tr>              		
               </tfoot>
               
@@ -359,20 +419,72 @@
               		 <td>${column.priority_id}</td>
               		 <td>${column.solution_id}</td>
               		 <td>${column.data}</td>
-              		 <td>${column.rfc_id}</td>               		 
+              		 <td>${column.rfc_id}</td> 
+              	<td>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-primary">Primary</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-success">Success</button></a>
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-warning">Warning</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/Tables?"><button type="button" class="btn btn-danger">Danger</button></a>
+              	</td>  
+              	            		 
               	</tr>
               	</c:forEach>
               	</tbody>              	
                </c:when>
                
-              	<c:otherwise>
-              		<b>ID is equals to 2</b>
+               <c:when test = "${param.name == 'Book'}">
+               <thead>
+                	<tr>             	
+              		<th>ID</th>
+              		<th>title</th>
+              		<th>author</th>
+              		<th>price</th>
+              		<th>actions</th>
+              		</tr>
+              </thead>
+              <tfoot>
+                   <tr>             	
+              		<th>ID</th>
+              		<th>title</th>
+              		<th>author</th>
+              		<th>price</th>
+              		<th>actions</th>
+              		</tr>              		
+              </tfoot>
+              
+              
+              
+              <tbody>
+              <c:forEach var="column" items="${Book}">
+                <tr>                
+              		 <td>${column.id}</td>
+              		 <td>${column.title}</td>
+              		 <td>${column.author}</td>  
+              		 <td>${column.price}</td> 
+              	 <td>
+              	 <a href="${pageContext.request.contextPath}/tables?action=new"><button type="button" class="btn btn-primary">Add</button></a>
+              	 <a href="${pageContext.request.contextPath}/tables?action=edit&id=<c:out value='${column.id}' />"><button type="button" class="btn btn-warning">Edit</button></a>              	
+              	 <a href="${pageContext.request.contextPath}/tables?action=delete&id=<c:out value='${column.id}' />"><button type="button" class="btn btn-danger">Delete</button></a>
+              	</td>
+              	             	            	
+              	</tr>
+              	
+              	</c:forEach>
+              	
+              	
+              	</tbody>
+              	
+              	
+               </c:when>
+               
+              	<c:otherwise> 
+              	             	
+              		<iframe src="https://calendar.google.com/calendar/embed?src=itargo.nci%40gmail.com&ctz=Europe%2FMoscow" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+              	
               	</c:otherwise>
                
                
-              </c:choose>
-                
-                
+              </c:choose>                
               </tbody>
             </table>
           </div>
@@ -404,7 +516,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="/AllinOne/Controller">Logout</a>
+            <a class="btn btn-primary" href="/ticket/Controller">Logout</a>
           </div>
         </div>
       </div>

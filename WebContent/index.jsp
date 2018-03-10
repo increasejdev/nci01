@@ -5,9 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>EntryPoint</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<a href="/AllinOne/Controller?action=login">Click here to login</a> 
+<a href="${pageContext.request.contextPath}/controller?action=login">Click here to login</a> 
 
 </body>
 </html>

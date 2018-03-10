@@ -16,6 +16,7 @@
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body class="bg-dark">
@@ -24,7 +25,7 @@
       <div class="card-header">Login</div>
       <div class="card-body">
       
-        <form action="/AllinOne/Controller" method="post">
+        <form action="${pageContext.request.contextPath}/controller" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input class="form-control" id="exampleInputEmail1" value="<%=request.getAttribute("email") %>" name="email" type="email" aria-describedby="emailHelp" placeholder="Enter email">

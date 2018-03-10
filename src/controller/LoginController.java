@@ -15,7 +15,7 @@ import org.os.login.datasource.DataSource;
 import beans.Accounts;
 
 
-@WebServlet("/Controller")
+@WebServlet(urlPatterns={"/controller"})
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,7 +28,6 @@ public class LoginController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");	
-			
 		
 		if(action == null) {
 			if(request.getSession() != null) request.getSession().invalidate();
@@ -41,9 +40,8 @@ public class LoginController extends HttpServlet {
 			request.setAttribute("vmessage", "");
 			
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
-		}
-				
-		
+		}		
+			
 		else request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
@@ -71,6 +69,7 @@ public class LoginController extends HttpServlet {
 				request.getSession().setAttribute("Priority", DataSource.getInstance().PriorityQuery());
 				request.getSession().setAttribute("Solution", DataSource.getInstance().SolutionQuery());
 				request.getSession().setAttribute("Issue", DataSource.getInstance().IssueQuery());
+				request.getSession().setAttribute("Book", DataSource.getInstance().BooksQuery());
 				
 				request.getRequestDispatcher("admin.jsp").forward(request, response);				
 			}
